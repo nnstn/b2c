@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pursuit</groupId>
+		<artifactId>b2c-parent</artifactId>
+		<version>0.0.1-version</version>
+	</parent>
+	<artifactId>b2c-manager</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>b2c-manager-dao</module>
+		<module>b2c-manager-service</module>
+		<module>b2c-manager-pojo</module>
+		<module>b2c-manager-web</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.pursuit</groupId>
+			<artifactId>b2c-common</artifactId>
+			<version>0.0.1-version</version>
+		</dependency>
+	</dependencies>
+	<!-- 添加tomcat插件 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<port>8080</port>
+					<path>/</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
