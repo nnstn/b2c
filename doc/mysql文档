@@ -27,7 +27,7 @@ Starting MySQL... SUCCESS!
 6.查看已安装程序：
 [root@localdomain mysql]# rpm -qa |grep -i mysql
 
-7.登录： mysql -u root -h localhost -p '5f5CVO8DRRn1OHe5'
+7.登录： mysql -u root -h localhost -p 
 
 8.给远程用户登录权限
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'pursuit'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
