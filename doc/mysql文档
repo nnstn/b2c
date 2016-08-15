@@ -8,9 +8,8 @@
 
 3.安装mysql主要构件
     yum -y install MySQL-server-5.6.32-1.linux_glibc2.5.x86_64.rpm
-    yum -y install MySQL-devel-5.6.32-1.linux_glibc2.5.x86_64.rpm
-    yum -y install MySQL-client-5.6.32-1.linux_glibc2.5.x86_64.rpm
-
+    注意观察,生成随机密码：
+    日志中：A random root password has been set. You will find it in '/root/.mysql_secret'.
 4.启动mysql 
 [root@localdomain mysql]# /etc/init.d/mysql start
 Starting MySQL...... ERROR! The server quit without updating PID file (/var/lib/mysql/localdomain.pid).
@@ -22,5 +21,21 @@ Starting MySQL...... ERROR! The server quit without updating PID file (/var/lib/
 # /etc/init.d/mysql start
 Starting MySQL... SUCCESS! 
 
-5.
-    
+5.安装mysql客户端
+    yum -y install MySQL-client-5.6.32-1.linux_glibc2.5.x86_64.rpm
+
+6.查看已安装程序：
+[root@localdomain mysql]# rpm -qa |grep -i mysql
+
+7.登录： mysql -u root -h localhost -p '5f5CVO8DRRn1OHe5'
+
+8.给远程用户登录权限
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'pursuit'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+Query OK, 0 rows affected (0.00 sec)
+
+9.修改密码：
+mysqladmin -u root -p password "123456"
+后续：忘记密码，找回密码
