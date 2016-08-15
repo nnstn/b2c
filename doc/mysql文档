@@ -1,0 +1,26 @@
+
+检查mysql安装情况
+1.rpm -qa |grep -i mysql 
+
+2.删除原系统中mysql
+    方法1: rpm -e  ***
+    方法2: yum -y remove mysql-libs-5.1.73-5.el6_6.x86_64
+
+3.安装mysql主要构件
+    yum -y install MySQL-server-5.6.32-1.linux_glibc2.5.x86_64.rpm
+    yum -y install MySQL-devel-5.6.32-1.linux_glibc2.5.x86_64.rpm
+    yum -y install MySQL-client-5.6.32-1.linux_glibc2.5.x86_64.rpm
+
+4.启动mysql 
+[root@localdomain mysql]# /etc/init.d/mysql start
+Starting MySQL...... ERROR! The server quit without updating PID file (/var/lib/mysql/localdomain.pid).
+
+查看：localdomain.err 
+     [ERROR] InnoDB: auto-extending data file ./ibdata1 is of a different size 640 pages (.....
+解决方法：rm ibdata1  ib_logfile0  ib_logfile1 
+启动成功
+# /etc/init.d/mysql start
+Starting MySQL... SUCCESS! 
+
+5.
+    
