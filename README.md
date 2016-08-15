@@ -7,6 +7,10 @@ b2c-common    公共库文件包
 
 b2c-manager   商城后台管理
 
+开发运行：clean tomcat7:run
+工程安装：clean install -DskipTests
+工程发布：clean tomcat7:redeploy -DskipTests
+
   b2c-manager-dao
   
   b2c-manager-pojo
