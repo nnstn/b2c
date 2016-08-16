@@ -5,7 +5,7 @@ b2c-parent    商城父目录
 
 b2c-common    公共库文件包
 
-b2c-manager   商城后台管理
+b2c-manager   商城后台管理  http://192.168.128.128:10102/
 
 开发运行：clean tomcat7:run
 工程安装：clean install -DskipTests
