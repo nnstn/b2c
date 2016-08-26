@@ -1,0 +1,28 @@
+
+1.下载jdk
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html 
+
+
+2.配置全局 环境变量：vi /etc/profile
+
+pathmunge () {
+    case ":${PATH}:" in
+        *:"$1":*)
+            ;;
+        *)
+            if [ "$2" = "after" ] ; then
+                PATH=$PATH:$1
+            else
+                PATH=$1:$PATH
+            fi
+    esac
+}
+后面添加：
+JAVA_HOME=/usr/local/java/jdk1.8.0_101
+PATH=$JAVA_HOME/bin:$PATH 
+CLASSPATH=$JAVA_HOME/jre/lib/ext:$JAVA_HOME/lib/tools.jar 
+export PATH JAVA_HOME CLASSPATH
+
+3.全局变量生效：source /etc/profile
+
+4.测试： java -version
