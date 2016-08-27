@@ -5,6 +5,10 @@
 2.删除原系统中mysql
     方法1: rpm -e  ***
     方法2: yum -y remove mysql-libs-5.1.73-5.el6_6.x86_64
+卸载时出现：error: Failed dependencies:
+可以使用：--nodeps 参数
+    # rpm -e mysql-community-client-5.6.31-2.el6.x86_64 --nodeps
+
 
 3.安装mysql主要构件
     yum -y install MySQL-server-5.6.32-1.linux_glibc2.5.x86_64.rpm
@@ -28,14 +32,46 @@ Starting MySQL... SUCCESS!
 [root@localdomain mysql]# rpm -qa |grep -i mysql
 
 7.登录： mysql -u root -h localhost -p 
+输入密码：****
+
+创建数据库：
+create database b2c;
+grant all privileges on b2c.* to pursuit identified by "123456";
+
 
 8.给远程用户登录权限
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'pursuit'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 Query OK, 0 rows affected (0.04 sec)
 
+
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 Query OK, 0 rows affected (0.00 sec)
+
+
 
 9.修改密码：
 mysqladmin -u root -p password "123456"
 后续：忘记密码，找回密码
+
+10.root用户无法登陆：
+[root@localhost mysql]# /usr/bin/mysql -u root -p  
+Enter password:   
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: NO)  
+
+解决办法：
+    1.停止MySQL  
+      [root@localhost mysql]# service mysql stop
+    2.启动MySQL安全模式
+      [root@localhost mysql]# mysqld_safe --user=mysql --skip-grant-tables --skip-networking &
+      mysql -u root mysql
+    3.更改root密码
+mysql> UPDATE user SET Password=PASSWORD('sa') where USER='root';  
+Query OK, 4 rows affected (0.01 sec)  
+Rows matched: 4  Changed: 4  Warnings: 0  
+   
+mysql> flush privileges;  
+Query OK, 0 rows affected (0.00 sec)  
+
+mysql> quit  
+Bye  
+
