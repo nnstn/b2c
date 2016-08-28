@@ -1,0 +1,28 @@
+
+第一步：修改tomcat-users.xml配置文件，配置用户、密码和权限。
+<role rolename="manager-gui" />
+<role rolename="manager-script" />
+<user username="tomcat" password="tomcat" roles="manager-gui, manager-script"/>
+第二步：在pom文件中配置tomcat插件。
+ 	<!-- 添加tomcat插件 -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<!--clean tomcat7:run -->
+					<port>8080</port>
+					<path>/</path>
+					<!-- tomcat热部署配置  tomcat7:deploy  [clean tomcat7:redeploy -DskipTests ]-->
+					<url>http://123.249.54.9:10102/manager/text</url>
+					<username>tomcat</username>
+					<password>tomcat</password>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+ 
+第三步：部署
+初次部署可以使用 "tomcat7:deploy" 命令
+如果已经部署过使用 "tomcat7:redeploy" 命令
