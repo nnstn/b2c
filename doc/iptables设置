@@ -1,0 +1,18 @@
+一.防火墙
+
+Linux下查看、关闭及开启防火墙命令
+1)永久性生效，重启后不会复原 
+开启： chkconfig iptables on 
+关闭： chkconfig iptables off 或者 /sbin/chkconfig --level 2345 iptables off
+
+2)即时生效，重启后复原 
+    开启：service iptables start    关闭： service iptables stop 
+    重启：service iptables restart
+    /etc/init.d/iptables status
+    /etc/init.d/iptables stop
+    /etc/init.d/iptables restart
+3)防火墙加端口
+vi /etc/sysconfig/iptables 
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 8181 -j ACCEPT
