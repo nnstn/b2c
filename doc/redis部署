@@ -1,0 +1,28 @@
+单机版:
+第一步：安装gcc编译环境
+yum install gcc-c++
+第二步：把redis的源码上传到linux服务器。
+第三步：解压缩。
+tar -zxvf redis-3.0.0.tar.gz
+第四步：make
+第五步：make install PREFIX=/usr/local/redis
+
+集群版：
+集群中应该至少有三个节点，每个节点有一备份节点。需要6台服务器。
+搭建伪分布式，需要6个redis实例。
+搭建集群的步骤：
+第一步：创建6个redis实例指定端口从7001到7006
+第二步：修改redis.conf 打开Cluster-enable yes前面的注释。
+第三步：需要一个ruby脚本。在redis源码文件夹下的src目录下。redis-trib.rb
+第四步：把redis-trib.rb文件复制到到redis-cluster目录下。
+第五步：执行ruby脚本之前，需要安装ruby环境。
+1、yum install ruby
+2、yum install rubygems
+3、安装redis-trib.rb运行依赖的ruby的包。
+ 
+[root@bogon ~]# gem install redis-3.0.0.gem
+第六步：启动所有的redis实例。
+第七步：使用redis-trib.rb创建集群。
+./redis-trib.rb create --replicas 1 192.168.25.153:7001 192.168.25.153:7002 192.168.25.153:7003 192.168.25.153:7004 192.168.25.153:7005  192.168.25.153:7006
+
+使用客户端连接集群： redis01/redis-cli -p 7001 -c
