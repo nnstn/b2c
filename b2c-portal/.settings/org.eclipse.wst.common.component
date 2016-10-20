@@ -4,6 +4,9 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="b2c-manager-pojo-0.0.1-version.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/b2c-manager-pojo/b2c-manager-pojo">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="b2c-common-0.0.1-version.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/b2c-common/b2c-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
