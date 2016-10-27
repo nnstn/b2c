@@ -7,7 +7,7 @@
 		<version>0.0.1-version</version>
 	</parent>
 	<artifactId>b2c-common</artifactId>
-	<!-- 添加依赖 -->
+	<!-- 添加依赖 测试-->
 	<dependencies>
 	  	<dependency>
 			<groupId>com.pursuit</groupId>
