@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<templates>  
+    <template autoinsert="true" context="filecomment_context"  
+        deleted="false" description="已创建的 Java 文件的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.filecomment" name="filecomment">/** 
+ * @Project     ${project_name} 
+ * @File        ${file_name} 
+ * @Package     ${package_name} 
+ * @Description: ${todo}
+ * @Author      wangjn1130@163.com 
+ * @Version     V1.0 
+ * @Date        ${date} ${time} 
+ */</template> 
+    <template autoinsert="true" context="typecomment_context"  
+        deleted="false" description="创建的类型的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.typecomment" name="typecomment">/**
+ * @ClassName   ${type_name} 
+ * @Description ${todo} 
+ * @Date        ${date} ${time} 
+ * @Author      wangjn1130@163.com
+ * ${tags} 
+ */</template>
+  <template autoinsert="true" context="constructorcomment_context"  
+        deleted="false" description="创建的构造函数的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.constructorcomment" name="constructorcomment">/** 
+ * Title:${file_name} 
+ * Description: ${todo} 
+ * ${tags} 
+ */</template> 
+   <template autoinsert="true" context="fieldcomment_context"  
+        deleted="false" description="字段的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.fieldcomment" name="fieldcomment">/** 
+ * @Fields ${field} ${todo} 
+ */</template>
+    <template autoinsert="true" context="delegatecomment_context"  
+        deleted="false" description="代表方法的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.delegatecomment" name="delegatecomment">  
+/** 
+ * ${tags} 
+ * ${see_to_target} 
+ */</template>  
+    <template autoinsert="true" context="overridecomment_context"  
+        deleted="false" description="覆盖方法的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.overridecomment" name="overridecomment">/** 
+ * @Description ${todo} 
+ * @param ${tags} 参数 
+ * @return ${return_type} 返回类型  
+ * @throws 
+ */</template>
+    <template autoinsert="true" context="methodcomment_context"  
+        deleted="false" description="非覆盖方法的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">/** 
+ * @Description ${todo} 
+ * @param ${tags} 参数 
+ * @return ${return_type} 返回类型  
+ * @throws 
+ */</template>  
+    <template autoinsert="true" context="gettercomment_context"  
+        deleted="false" description="getter 方法的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.gettercomment" name="gettercomment">  
+/** 
+ * @return ${bare_field_name} 
+ */</template>  
+    <template autoinsert="true" context="settercomment_context"  
+        deleted="false" description="setter 方法的注释" enabled="true"  
+        id="org.eclipse.jdt.ui.text.codetemplates.settercomment" name="settercomment">  
+/** 
+ * @param ${param} ${bare_field_name} 
+ */</template>  
+
+</templates>
