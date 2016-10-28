@@ -13,8 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pursuit.controller.ItemController;
 import com.pursuit.fastdfs.util.FastDFSClient;
+import com.pursuit.manager.web.controller.ItemController;
 import com.pursuit.mapper.TbItemMapper;
 import com.pursuit.pojo.TbItem;
 import com.pursuit.pojo.TbItemExample;

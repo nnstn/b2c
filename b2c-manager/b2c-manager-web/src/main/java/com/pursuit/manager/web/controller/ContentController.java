@@ -1,4 +1,4 @@
-package com.pursuit.controller;
+package com.pursuit.manager.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

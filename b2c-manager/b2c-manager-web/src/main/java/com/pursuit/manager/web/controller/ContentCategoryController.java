@@ -1,4 +1,4 @@
-package com.pursuit.controller;
+package com.pursuit.manager.web.controller;
 
 import java.util.List;
 

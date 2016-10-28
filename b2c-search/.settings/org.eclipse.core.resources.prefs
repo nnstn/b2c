@@ -4,3 +4,4 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/properties/db.properties=UTF-8
 encoding//src/main/resources/properties/search.properties=UTF-8
 encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
