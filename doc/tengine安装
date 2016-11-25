@@ -1,0 +1,68 @@
+1.准备工作
+     yum update
+     yum install gcc gcc-c++ autoconf automake
+
+2.安装prce 组件
+PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx rewrite依赖于PCRE库，所以在安装Tengine前一定要先安装PCRE
+
+cd /usr/local/src
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz
+./configure --prefix=/usr/local/pcre
+make && make install
+
+3.安装openssl
+OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。，安装OpenSSL（http://www.openssl.org/source/）主要是为了让tengine支持Https的访问请求。
+cd /usr/local/src
+wget http://www.openssl.org/source/openssl-1.0.2.tar.gz
+
+./configure --prefix=/usr/local/openssl
+make && make install
+
+4.安装 Zlib
+Zlib是提供资料压缩之用的函式库，当Tengine想启用GZIP压缩的时候就需要使用到Zlib
+
+cd /usr/local/src
+wget http://zlib.net/zlib-1.2.8.tar.gz
+tar zxvf zlib-1.2.8.tar.gz
+cd zlib-1.2.8.tar.gz
+./configure --prefix=/usr/local/zlib
+make && make install
+
+
+5.安装 jemalloc
+jemalloc（http://www.canonware.com/jemalloc/）是一个更好的内存管理工具，使用jemalloc可以更好的优化Tengine的内存管理。
+
+cd /usr/local/src
+wget http://www.canonware.com/download/jemalloc/jemalloc-3.6.0.tar.bz2
+tar jxvf jemalloc-3.6.0.tar.bz2
+cd jemalloc-3.6.0.tar.bz2
+./configure --prefix=/usr/local/jemalloc
+make && make install
+
+6.安装Tengine
+在主要核心的组件安装完毕以后就可以安装Tegine了，最新版本的Tegine可从官网(http://tengine.taobao.org/)获取。
+在编译安装前还需要做的一件事是添加一个专门的用户来执行Tengine。当然你也可以用root（不建议）。
+复制代码 代码如下:
+
+groupadd www-data
+useradd -s /sbin/nologin -g www-data www-data
+接下来才是进行安装：
+
+cd /usr/local/src
+wget http://tengine.taobao.org/download/tengine-2.1.0.tar.gz
+tar -zxvf tengine-2.1.0.tar.gz
+cd tengine-2.1.0
+
+./configure --prefix=/home/tengine/nginx \
+--user=tengine \
+--group=tengine \
+--with-pcre=/home/tengine/pcre-8.36 \
+--with-openssl=/home/tengine/openssl-1.0.2 \
+--with-jemalloc=/home/tengine/jemalloc-3.6.0 \
+--with-http_gzip_static_module \
+--with-http_realip_module \
+--with-http_stub_status_module \
+--with-http_concat_module \
+--with-zlib=/home/tengine/zlib-1.2.8
+
+注意配置的时候 –with-pcre 、–with-openssl、–with-jemalloc、–with-zlib的路径为源文件的路径。
