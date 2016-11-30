@@ -66,3 +66,8 @@ cd tengine-2.1.0
 --with-zlib=/home/tengine/zlib-1.2.8
 
 注意配置的时候 –with-pcre 、–with-openssl、–with-jemalloc、–with-zlib的路径为源文件的路径。
+
+
+chmod 775 /etc/rc.d/init.d/nginx #赋予文件执行权限
+chkconfig nginx on #设置开机启动
+service nginx restart #启动服务
