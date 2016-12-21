@@ -87,3 +87,10 @@ cd tengine-2.1.0
 chmod 775 /etc/rc.d/init.d/nginx #赋予文件执行权限
 chkconfig nginx on #设置开机启动
 service nginx restart #启动服务
+
+nginx -V 查看有哪些模块
+
+
+
+
+
