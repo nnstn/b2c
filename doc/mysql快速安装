@@ -1,0 +1,114 @@
+
+
+http://www.cnblogs.com/shenliang123/p/3203546.html
+http://www.centoscn.com/mysql/2014/1211/4290.html
+
+
+卸载原有mysql
+rpm -qa | grep mysql　　// 这个命令就会查看该操作系统上是否已经安装了mysql数据库
+rpm -e --nodeps mysql　　// 强力删除模式，如果使用上面命令删除时，提示有依赖的其它文件，则用该命令可
+
+以对其进行强力删除
+
+
+查看yum上提供的mysql数据库可下载的版本：
+yum list | grep mysql
+
+安装：
+yum install -y mysql-server mysql mysql-devel
+
+查看刚安装好的mysql-server的版本
+rpm -qi mysql-server
+
+启动服务
+service mysqld start
+
+第一次启动mysql服务器以后会提示非常多的信息，目的就是对mysql数据库进行初始化操作，当我们再次重新启动
+
+mysql服务时，就不会提示这么多信息了
+
+设置密码：
+在第一次启动mysql服务时，会进行数据库的一些初始化工作，在输出的一大串信息中，我们看到有这样一行信息 
+/usr/bin/mysqladmin -u root password 'new-password'　　// 为root账号设置密码
+通过命令设置mysql密码：
+/usr/bin/mysqladmin -u root password '123456' //设置mysql密码
+
+可选择重启mysql服务
+service mysqld restart
+
+
+mysql -u root -p  //登录mysql
+
+设置开机启动：
+chkconfig --list | grep mysqld 
+chkconfig mysqld on
+
+
+
+登录mysql：
+mysql -u root -p 
+
+
+
+给远程用户登录权限
+    1.改表法：
+    >mysql -u root -phenghost
+    mysql> use mysql;
+    mysql> update user set host ='%' where user = 'root';
+    mysql> select host, user from user;
+    mysql> flush privileges;
+    2.授权法：
+    mysql> GRANT ALL PRIVILEGES ON *.* TO 'pursuit'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+    Query OK, 0 rows affected (0.04 sec)
+
+    mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
+    Query OK, 0 rows affected (0.00 sec)
+
+
+
+主配置文件
+cat  /etc/my.cnf 
+[mysqld]
+datadir=/var/lib/mysql   //mysql数据库的数据库文件存放位置,新建数据库，会在这里体现
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log  //mysql数据库的日志输出存放位置
+pid-file=/var/run/mysqld/mysqld.pid
+
+
+
+
+其中mysqld.log 这个文件就是我们存放我们跟mysql数据库进行操作而产生的一些日志信息，通过查看该日志文件
+
+我们可以从中获得很多信息
+
+
+错误信息：
+
+授权错误
+mysql> update user set host ='%' where user ='root';
+ERROR 1062 (23000): Duplicate entry '%-root' for key 'PRIMARY'
+mysql> select host, user from user;
++----------------+------+
+| host           | user |
++----------------+------+
+| %              | root |
+| 127.0.0.1      | root |
+| localdomain130 |      |
+| localdomain130 | root |
+| localhost      |      |
++----------------+------+
+5 rows in set (0.00 sec)
+
+解决：
+host已经有了%这个值，所以直接运行命令： 
+复制代码 代码如下:
+
+MySQL>flush privileges; 
+
+
+ 
