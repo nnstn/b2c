@@ -9,6 +9,15 @@
 可以使用：--nodeps 参数
     # rpm -e mysql-community-client-5.6.31-2.el6.x86_64 --nodeps
 
+CentOS卸载旧版本mysql
+    yum remove mysql mysql-server mysql-libs compat-mysql51
+    rm -rf /data/soft/mysql/*
+    rm /etc/my.cnf.rpmsave
+    删除mysql服务
+        chkconfig --list | grep -i mysql
+        chkconfig --del mysql
+    删除分散mysql文件夹
+        whereis mysql 或者 find / -name mysql
 
 3.安装mysql主要构件
     yum -y install MySQL-server-5.6.32-1.linux_glibc2.5.x86_64.rpm
