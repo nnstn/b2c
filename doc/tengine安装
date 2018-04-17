@@ -7,6 +7,7 @@ PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容�
 
 cd /usr/local/src
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.36.tar.gz
+wget http://downloads.sourceforge.net/project/pcre/pcre/8.42/pcre-8.42.tar.gz
 ./configure --prefix=/usr/local/pcre
 make && make install
 
