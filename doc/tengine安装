@@ -24,6 +24,7 @@ Zlib是提供资料压缩之用的函式库，当Tengine想启用GZIP压缩的�
 
 cd /usr/local/src
 wget http://zlib.net/zlib-1.2.8.tar.gz
+wget https://jaist.dl.sourceforge.net/project/libpng/zlib/1.2.11/zlib-1.2.11.tar.gz
 tar zxvf zlib-1.2.8.tar.gz
 cd zlib-1.2.8.tar.gz
 ./configure --prefix=/usr/local/zlib
@@ -51,6 +52,7 @@ useradd -s /sbin/nologin -g www-data www-data
 
 cd /usr/local/src
 wget http://tengine.taobao.org/download/tengine-2.1.0.tar.gz
+wget http://nginx.org/download/nginx-1.14.0.tar.gz
 tar -zxvf tengine-2.1.0.tar.gz
 cd tengine-2.1.0
 
